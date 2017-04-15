@@ -1,4 +1,4 @@
-// Creating a database connection
+<!-- Creating a database connection -->
 <?php
     $dsn = 'mysql:host=sql2.njit.edu;dbname=rtp8';
     $username = 'rtp8';
