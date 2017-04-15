@@ -14,9 +14,8 @@
         </form>
       </div>
       <div>
-        <form method="post" action="index.php">
+        <form method="post" action="register_page.php">
 	  <p>Don't have an account?</p>
-          <input type="hidden" name="action" value="register_user">
           <input type="submit" value="Register">
         </form>
       </div>
