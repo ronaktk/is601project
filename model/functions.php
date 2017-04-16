@@ -31,4 +31,29 @@ registerUser($first_name,$last_name,$user_name,$user_password,$user_email) {
   }
 }
 
+function isUserRegistered($user_name,$user_password) {
+  global $db;
+  $query = 'select * from user_info where user_name = :username
+  and user_password = :userpass';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':username',$user_name);
+  $statement->bindValue(':userpass',$user_password);
+  $statement->execute();
+  $result = $statement->fetchAll();
+  $statement->closeCursor();
+  $count = $statement->rowCount();
+  if($count == 1) {
+    setcookie('login',$username);
+    setcookie('userid',$result[0]['id']);
+    setcookie('islogged',true);
+    return true;
+  } else {
+      unset($_COOKIE['login']);
+      setcookie('login',false);
+      setcookie('userid',false);
+      setcookie('islogged',false);
+      return false;
+  }
+}
+
 ?>
