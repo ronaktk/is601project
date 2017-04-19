@@ -21,7 +21,20 @@ if($action == "register_user") {
   if($exit == true) {
     include('view/error1.php');
   } else {
-    header("Location: view/login_page.php");
+    header("Location: index.php");
+  }
+}
+
+if($action == "check_user") {
+  $username = filter_input(INPUT_POST,'user_name');
+  $userpass = filter_input(INPUT_POST,'user_password');
+  $success = isUserRegistered($username,$userpass);
+  if($success == true) {
+    //display welcome page
+    echo $_COOKIE['login'];
+  } else {
+      //display error
+      echo "error";
   }
 }
 

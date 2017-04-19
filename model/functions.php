@@ -43,7 +43,7 @@ function isUserRegistered($user_name,$user_password) {
   $statement->closeCursor();
   $count = $statement->rowCount();
   if($count == 1) {
-    setcookie('login',$username);
+    setcookie('login',$user_name);
     setcookie('userid',$result[0]['id']);
     setcookie('islogged',true);
     return true;
