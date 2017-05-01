@@ -9,8 +9,9 @@
         <img src="images/image1.png" alt="error">
         <form method="post" action="index.php">
 	  <div class="form-input">
-            <input type="text" name="user_name" placeholder="Enter your name">
-	    <input type="password" name="user_password" placeholder="Enter your password">
+            <input type="text" name="user_name" placeholder="Enter your name"
+	    required>
+	    <input type="password" name="user_password" placeholder="Enter your password" required>
 	  </div>
 	  <input type="hidden" name="action" value="check_user">
 	  <input type="submit" value="Login" class="btn-login">
