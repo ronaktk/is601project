@@ -56,4 +56,15 @@ function isUserRegistered($user_name,$user_password) {
   }
 }
 
+function displayItems($user_id) {
+  global $db;
+  $query = 'select * from todo_list where user_id= :userid';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':userid',$user_id);
+  $statement->execute();
+  $result = $statement->fetchAll();
+  $statement->closeCursor();
+  return $result;
+}
+
 ?>
