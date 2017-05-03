@@ -30,7 +30,7 @@
       </tr>
       <?php endforeach; ?>
     </table>
-    <form action="add.php" method="post">
+    <form action="view/add_item.php" method="post">
       <input type="submit" value="Add">
     </form>
   </body>
