@@ -40,4 +40,12 @@ if($action == "check_user") {
   }
 }
 
+if($action == "add_item") {
+  if(isset($_POST['item_name'])) {
+    addItem($_COOKIE['userid'], $_POST['item_name']);
+  }
+  $result = displayItems($_COOKIE['userid']);
+  include('view/todo_list.php');
+}
+
 ?>

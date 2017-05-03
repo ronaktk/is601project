@@ -67,4 +67,14 @@ function displayItems($user_id) {
   return $result;
 }
 
+function addItem($user_id,$item_name) {
+  global $db;
+  $query = 'insert into todo_list(user_id,item_name,item_date) values(:userid,:item_name,CURRENT_DATE)';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':userid',$user_id);
+  $statement->bindValue(':item_name',$item_name);
+  $statement->execute();
+  $statement->closeCursor();
+}
+
 ?>
