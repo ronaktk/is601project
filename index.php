@@ -31,7 +31,9 @@ if($action == "check_user") {
   $success = isUserRegistered($username,$userpass);
   if($success == true) {
     //display welcome page
-    echo $_COOKIE['login'];
+    // echo $_COOKIE['login'];
+    $result = displayItems($_COOKIE['userid']);
+    include('view/todo_list.php');
   } else {
       //display error
       echo "error";
