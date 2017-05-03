@@ -48,4 +48,13 @@ if($action == "add_item") {
   include('view/todo_list.php');
 }
 
+if($action == "delete_item") {
+  if(isset($_POST['item_id'])) {
+    $selected = $_POST['item_id'];
+    deleteItem($_COOKIE['userid'],$selected);
+  }
+  $result = displayItems($_COOKIE['userid']);
+  include('view/todo_list.php');
+}
+
 ?>

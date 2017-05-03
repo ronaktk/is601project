@@ -80,4 +80,14 @@ function addItem($user_id,$item_name) {
   $statement->closeCursor();
 }
 
+function deleteItem($user_id,$item_id) {
+  global $db;
+  $query = 'delete from todo_list where id = :item_id and user_id = :userid';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':item_id',$item_id);
+  $statement->bindValue(':userid',$user_id);
+  $statement->execute();
+  $statement->closeCursor();
+}
+
 ?>
