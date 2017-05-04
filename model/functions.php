@@ -90,4 +90,15 @@ function deleteItem($user_id,$item_id) {
   $statement->closeCursor();
 }
 
+function editItem($item_id,$new_name,$new_date) {
+  global $db;
+  $query = 'update todo_list set item_name= :new_name, item_date= :new_date where id= :userid';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':new_name',$new_name);
+  $statement->bindValue(':new_date',$new_date);
+  $statement->bindValue(':userid',$item_id);
+  $statement->execute();
+  $statement->closeCursor();
+}
+
 ?>

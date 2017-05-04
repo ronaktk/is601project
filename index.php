@@ -57,4 +57,15 @@ if($action == "delete_item") {
   include('view/todo_list.php');
 }
 
+if($action == "edit_item") {
+  if(isset($_POST['new_name'])) {
+    $item_id = $_POST['item_id'];
+    $new_name = $_POST['new_name'];
+    $new_date = $_POST['new_date'];
+    editItem($item_id,$new_name,$new_date);
+    $result = displayItems($_COOKIE['userid']);
+    include('view/todo_list.php');
+  }
+}
+
 ?>
