@@ -42,7 +42,7 @@ if($action == "check_user") {
 
 if($action == "add_item") {
   if(isset($_POST['item_name'])) {
-    addItem($_COOKIE['userid'], $_POST['item_name']);
+    addItem($_COOKIE['userid'], $_POST['item_name'], $_POST['item_date'], $_POST['item_time']);
   }
   $result = displayItems($_COOKIE['userid']);
   include('view/todo_list.php');
@@ -62,7 +62,8 @@ if($action == "edit_item") {
     $item_id = $_POST['item_id'];
     $new_name = $_POST['new_name'];
     $new_date = $_POST['new_date'];
-    editItem($item_id,$new_name,$new_date);
+    $new_time = $_POST['new_time'];
+    editItem($item_id,$new_name,$new_date,$new_time);
     $result = displayItems($_COOKIE['userid']);
     include('view/todo_list.php');
   }

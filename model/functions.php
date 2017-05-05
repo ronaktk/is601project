@@ -70,12 +70,14 @@ function displayItems($user_id) {
   return $result;
 }
 
-function addItem($user_id,$item_name) {
+function addItem($user_id,$item_name,$item_date,$item_time) {
   global $db;
-  $query = 'insert into todo_list(user_id,item_name,item_date) values(:userid,:item_name,CURRENT_DATE)';
+  $query = 'insert into todo_list(user_id,item_name,item_date,item_time) values(:userid,:item_name,:item_date,:item_time)';
   $statement = $db->prepare($query);
   $statement->bindValue(':userid',$user_id);
   $statement->bindValue(':item_name',$item_name);
+  $statement->bindValue(':item_date',$item_date);
+  $statement->bindValue(':item_time',$item_time);
   $statement->execute();
   $statement->closeCursor();
 }
@@ -90,12 +92,13 @@ function deleteItem($user_id,$item_id) {
   $statement->closeCursor();
 }
 
-function editItem($item_id,$new_name,$new_date) {
+function editItem($item_id,$new_name,$new_date,$new_time) {
   global $db;
-  $query = 'update todo_list set item_name= :new_name, item_date= :new_date where id= :userid';
+  $query = 'update todo_list set item_name= :new_name, item_date= :new_date, item_time= :new_time where id= :userid';
   $statement = $db->prepare($query);
   $statement->bindValue(':new_name',$new_name);
   $statement->bindValue(':new_date',$new_date);
+  $statement->bindValue(':new_time',$new_time);
   $statement->bindValue(':userid',$item_id);
   $statement->execute();
   $statement->closeCursor();
