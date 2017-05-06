@@ -30,13 +30,11 @@ if($action == "check_user") {
   $userpass = filter_input(INPUT_POST,'user_password');
   $success = isUserRegistered($username,$userpass);
   if($success == true) {
-    //display welcome page
-    // echo $_COOKIE['login'];
     $result = displayItems($_COOKIE['userid']);
     include('view/todo_list.php');
   } else {
       //display error
-      echo "error";
+      include('view/error1.php');
   }
 }
 
