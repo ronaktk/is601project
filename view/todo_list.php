@@ -46,13 +46,21 @@
 	  </form>
 	</td>
 	<td>
-	  <input type="checkbox">Mark as done
+	  <form action="index.php" method="post">
+	    <input type="hidden" name="item_id" value="<?php echo $res['id'] ?>">
+	    <input type="hidden" name="action" value="update_status">
+	    <input type="submit" value="Mark as Done" class="todobutton btn">
+	  </form>
 	</td>
       </tr>
       <?php endforeach; ?>
     </table>
     <form action="view/add_item.php" method="post">
-      <input type="submit" value="Add" class="todobtn btn">
+      <input type="submit" value="Add" class="todobutton btn">
+    </form>
+    <form action="index.php" method="post">
+      <input type="hidden" name="action" value="showCompletedItems">
+      <input type="submit" value="Completed Tasks" class="todobutton btn">
     </form>
   </body>
 </html>
