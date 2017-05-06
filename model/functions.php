@@ -72,7 +72,9 @@ function displayItems($user_id) {
 
 function addItem($user_id,$item_name,$item_date,$item_time) {
   global $db;
-  $query = 'insert into todo_list(user_id,item_name,item_date,item_time) values(:userid,:item_name,:item_date,:item_time)';
+  $query = 'insert into
+  todo_list(user_id,item_name,item_date,item_time,item_status)
+  values(:userid,:item_name,:item_date,:item_time,0)';
   $statement = $db->prepare($query);
   $statement->bindValue(':userid',$user_id);
   $statement->bindValue(':item_name',$item_name);
@@ -102,6 +104,28 @@ function editItem($item_id,$new_name,$new_date,$new_time) {
   $statement->bindValue(':userid',$item_id);
   $statement->execute();
   $statement->closeCursor();
+}
+
+function updateStatus($user_id,$item_id) {
+  global $db;
+  $query = 'update todo_list set item_status=1 where id:item_id and
+  user_id=:userid';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':item_id',$item_id);
+  $statement->bindValue(':userid',$user_id);
+  $statement->execute();
+  $statement->closeCursor();
+}
+
+function showCompletedItems($user_id) {
+  global $db;
+  $query = 'select * from todo_list where user_id=:userid and item_status=1';
+  $statement = $db->prepare($query);
+  $statement->bindValue(':userid',$user_id);
+  $statement->execute();
+  $result = $statement->fetchAll();
+  $statement->closeCursor();
+  return $result;
 }
 
 ?>
