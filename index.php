@@ -69,4 +69,18 @@ if($action == "edit_item") {
   }
 }
 
+if($action == "update_status") {
+  if(isset($_POST['item_id'])) {
+    $item_id = $_POST['item_id'];
+    updateStatus($_COOKIE['userid'],$item_id);
+  }
+  $result = displayItems($_COOKIE['userid']);
+  include('view/todo_list.php');
+}
+
+if($action == "showCompletedItems") {
+  $result = showCompletedItems($_COOKIE['userid']);
+  include('view/updated_list.php');
+}
+
 ?>

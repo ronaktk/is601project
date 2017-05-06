@@ -61,7 +61,7 @@ function isUserRegistered($user_name,$user_password) {
 
 function displayItems($user_id) {
   global $db;
-  $query = 'select * from todo_list where user_id= :userid';
+  $query = 'select * from todo_list where user_id= :userid and item_status=0';
   $statement = $db->prepare($query);
   $statement->bindValue(':userid',$user_id);
   $statement->execute();
@@ -108,7 +108,7 @@ function editItem($item_id,$new_name,$new_date,$new_time) {
 
 function updateStatus($user_id,$item_id) {
   global $db;
-  $query = 'update todo_list set item_status=1 where id:item_id and
+  $query = 'update todo_list set item_status=1 where id=:item_id and
   user_id=:userid';
   $statement = $db->prepare($query);
   $statement->bindValue(':item_id',$item_id);
