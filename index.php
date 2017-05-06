@@ -19,7 +19,7 @@ if($action == "register_user") {
   $useremail = filter_input(INPUT_POST,'user_email');
   $exit = registerUser($firstname,$lastname,$username,$userpass,$useremail);
   if($exit == true) {
-    include('view/error1.php');
+    include('view/error.php');
   } else {
     header("Location: index.php");
   }
