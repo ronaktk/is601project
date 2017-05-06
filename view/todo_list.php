@@ -5,8 +5,9 @@
     <link rel="stylesheet" type="text/css" href="css/todo.css">
   </head>
   <body>
-  <?php echo '<h1 style="text-align:center">Welcome '.$_COOKIE['login'].'</h1>';?>
   <div class="header">
+    <?php echo '<h1 style="text-align:center">Welcome
+    '.$_COOKIE['login'].'</h1>';?>
     <h2>My To Do List</h2>
   </div>
     <table id="todo">
@@ -19,8 +20,8 @@
 	<th></th>
       </tr>
       <?php
-        if($result == NULL)
-	  echo '<h2>You do not have any to-do items. You can start adding here.</h2>';
+        if($result == NULL) {
+	}
 	else
 	  foreach($result as $res):
       ?>
